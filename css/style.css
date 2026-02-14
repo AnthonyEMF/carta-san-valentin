@@ -343,7 +343,7 @@ h1 {
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 600px) {
   .container {
     width: 300px;
   }
@@ -369,7 +369,7 @@ h1 {
     top: auto;
     bottom: -120px;
     right: 50%;
-    transform: translateX(60%) rotate(-3deg);
+    transform: translateX(90%) rotate(7deg);
   }
   
   .polaroid-photo.show {
