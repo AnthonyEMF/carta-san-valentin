@@ -54,9 +54,17 @@ document.addEventListener("click", (e) => {
       setTimeout(() => {
         letter.classList.remove("letter-opening");
         letter.classList.add("opened");
+        
+        // Mostrar la foto Polaroid 1.5 segundos después de abrir la carta
+        setTimeout(() => {
+          document.getElementById('polaroidPhoto').classList.add('show');
+        }, 500);
       }, 500);
       envelope.classList.add("disable-envelope");
     } else {
+      // Ocultar la foto Polaroid antes de cerrar la carta
+      document.getElementById('polaroidPhoto').classList.remove('show');
+      
       letter.classList.add("closing-letter");
       envelope.classList.remove("disable-envelope");
       letter.classList.remove("opened");

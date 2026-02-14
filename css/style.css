@@ -34,6 +34,7 @@ h1 {
 
 .container {
   width: 400px;
+  position: relative;  /* Necesario para que position: absolute de la foto funcione */
 }
 
 .container > .envelope-wrapper {
@@ -285,6 +286,63 @@ h1 {
   background: var(--heart-color);
 }
 
+/* Foto Polaroid */
+.polaroid-photo {
+  position: absolute;
+  top: 45%;
+  right: -100px;
+  transform: translateY(-50%) rotate(8deg);
+  opacity: 0;
+  transition: all 0.8s ease-in-out;
+  z-index: 10001;  /* Muy alto para estar por encima de todo */
+}
+
+.polaroid-photo.show {
+  opacity: 1;
+  right: -80px;
+  animation: polaroidFloat 3s ease-in-out infinite;
+}
+
+.polaroid-frame {
+  background: white;
+  padding: 12px;
+  padding-bottom: 40px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+  width: 150px;  /* Reducido de 180px a 150px */
+}
+
+.polaroid-image {
+  width: 126px;  /* Reducido de 150px a 126px */
+  height: 126px;  /* Reducido de 150px a 126px */
+  overflow: hidden;
+  background: #f0f0f0;
+  margin-bottom: 10px;
+}
+
+.polaroid-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.polaroid-caption {
+  text-align: center;
+  font-family: "Marck Script", serif;
+  font-size: 16px;  /* Reducido de 18px a 16px */
+  color: #444;
+  margin-top: 5px;
+}
+
+@keyframes polaroidFloat {
+  0%, 100% {
+    transform: translateY(-50%) rotate(8deg);
+  }
+  50% {
+    transform: translateY(-55%) rotate(6deg);
+  }
+}
+
 @media screen and (max-width: 400px) {
   .container {
     width: 300px;
@@ -305,5 +363,43 @@ h1 {
     border-top: 150px solid var(--envelope-tab);
     border-right: 150px solid transparent;
     border-left: 150px solid transparent;
+  }
+  
+  .polaroid-photo {
+    top: auto;
+    bottom: -120px;
+    right: 50%;
+    transform: translateX(60%) rotate(-3deg);
+  }
+  
+  .polaroid-photo.show {
+    bottom: -100px;
+    right: 50%;
+    top: auto;
+    animation: polaroidFloatMobile 3s ease-in-out infinite;
+  }
+  
+  .polaroid-frame {
+    width: 140px;
+    padding: 12px;
+    padding-bottom: 40px;
+  }
+  
+  .polaroid-image {
+    width: 116px;
+    height: 116px;
+  }
+  
+  .polaroid-caption {
+    font-size: 14px;
+  }
+}
+
+@keyframes polaroidFloatMobile {
+  0%, 100% {
+    transform: translateX(90%) rotate(7deg);
+  }
+  50% {
+    transform: translateX(90%) translateY(9px) rotate(6deg);
   }
 }
